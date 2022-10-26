@@ -37,17 +37,16 @@ public class Dueños_ extends javax.swing.JFrame {
             st = cn.createStatement();
             rs = st.executeQuery(sql);
             //Los datos que devuelve la consulta se muestran en la tabla
-            Object[]mascotas = new Object[7];
+            Object[]dueños = new Object[7];
             modelo = (DefaultTableModel)tbDueñosMascotas.getModel();
             while(rs.next()){
-                mascotas[0] = rs.getInt("id");
-                mascotas[1] = rs.getString("owner_");
-                mascotas[2] = rs.getInt("id_document");
-                mascotas[3] = rs.getString("document_type");
-                mascotas[4] = rs.getString("document");
-                mascotas[5] = rs.getString("contact");
-                mascotas[6] = rs.getString("gender");
-                modelo.addRow(mascotas);
+                dueños[0] = rs.getInt("id");
+                dueños[1] = rs.getString("owner_");
+                dueños[2] = rs.getString("document_type");
+                dueños[3] = rs.getString("document");
+                dueños[4] = rs.getString("contact");
+                dueños[5] = rs.getString("gender");
+                modelo.addRow(dueños);
             }
             tbDueñosMascotas.setModel(modelo);
         }catch(SQLException e){
@@ -55,7 +54,6 @@ public class Dueños_ extends javax.swing.JFrame {
     }
     void add_dueño_mascota(){
         String name_ = txtNombreDM.getText();
-        int id_document = Integer.parseInt(txtIDdocumentoDM.getText());
         String document_type = txtDocumentoDM.getText();
         String document = txtDocumentoDM.getText();
         String contact = txtContactoDM.getText();
@@ -63,8 +61,8 @@ public class Dueños_ extends javax.swing.JFrame {
         if (name_.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Falta ingresar el nombre del dueño");
         }else{
-            String query = "INSERT INTO tb_pet_owners(owner_, id_document, document_type, document,contact,"
-                    + " gender) VALUES('" + name_ + "'," + id_document + ", '"+
+            String query = "INSERT INTO tb_pet_owners(owner_, document_type, document,contact,"
+                    + " gender) VALUES('" + name_ + "', '"+
                     document_type+ "','" + document + "','" + contact + "','" + gender + "')";
             try{
                 cn = con.getConnection();
@@ -83,7 +81,6 @@ public class Dueños_ extends javax.swing.JFrame {
         //Para identificar si el usuario modifico algún valor
         int id = Integer.parseInt(txtIDDM.getText());
         String name_ = txtNombreDM.getText();
-        int id_document = Integer.parseInt(txtIDdocumentoDM.getText());
         String document_type = txtDocumentoDM.getText();
         String document = txtDocumentoDM.getText();
         String contact = txtContactoDM.getText();
@@ -91,7 +88,7 @@ public class Dueños_ extends javax.swing.JFrame {
         if (name_.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Falta ingresar el nombre del dueño");
         }else{
-            String query = "UPDATE tb_pet_owners SET owner_ = '" + name_+ "', id_document = " + id_document + ",document_type = '"+
+            String query = "UPDATE tb_pet_owners SET owner_ = '" + name_+ "', document_type = '"+
                     document_type+ "', document = '" + document + "', contact = '" + contact + "', gender= '" + gender + "' WHERE id = " + id;
             //UPDATE tb_persons SET dni =dni, nombre= 'name' WHERE id = id
         try{
@@ -135,14 +132,14 @@ public class Dueños_ extends javax.swing.JFrame {
             rs = st.executeQuery(sql);
             System.out.println(rs);
             //Los datos que devuelve la consulta se muestran en la tabla
-            Object[]mascotas = new Object[4];
+            Object[]dueños = new Object[4];
             modelo = (DefaultTableModel)DM.tbDueños_Mascotas.getModel();
             while(rs.next()){
-                mascotas[0] = rs.getInt("id");
-                mascotas[1] = rs.getString("name_");
-                mascotas[2] = rs.getString("breed");
-                mascotas[3] = rs.getInt("id_owner_pet");
-                modelo.addRow(mascotas);
+                dueños[0] = rs.getInt("id");
+                dueños[1] = rs.getString("name_");
+                dueños[2] = rs.getString("breed");
+                dueños[3] = rs.getInt("id_owner_pet");
+                modelo.addRow(dueños);
             }
             DM.tbDueños_Mascotas.setModel(modelo);
             DM.setVisible(true);
@@ -158,7 +155,6 @@ public class Dueños_ extends javax.swing.JFrame {
         txtDocumentoDM.setText("");
         txtGeneroDM.setText("");
         txtIDDM.setText("");
-        txtIDdocumentoDM.setText("");
         txtTipoDocumentoDM.setText("");
         txtNombreDM.setText("");
     }
@@ -177,10 +173,8 @@ public class Dueños_ extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtIDDM = new javax.swing.JTextField();
         txtNombreDM = new javax.swing.JTextField();
-        txtIDdocumentoDM = new javax.swing.JTextField();
         btnAgregarDM = new javax.swing.JButton();
         btnEditarDM = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -209,8 +203,6 @@ public class Dueños_ extends javax.swing.JFrame {
         jLabel2.setText("ID");
 
         jLabel3.setText("Nombre");
-
-        jLabel4.setText("ID_documento");
 
         txtIDDM.setEnabled(false);
 
@@ -262,30 +254,33 @@ public class Dueños_ extends javax.swing.JFrame {
                 .addComponent(btnEliminarDM)
                 .addGap(48, 48, 48))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(220, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(245, 245, 245))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtIDDM)
-                                .addComponent(txtNombreDM)
-                                .addComponent(txtIDdocumentoDM)
-                                .addComponent(txtTipoDocumentoDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtDocumentoDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContactoDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGeneroDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(56, 56, 56)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTipoDocumentoDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDocumentoDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtContactoDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtGeneroDM, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(56, 56, 56)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtIDDM, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                                    .addComponent(txtNombreDM))))
                         .addGap(187, 187, 187))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -303,10 +298,6 @@ public class Dueños_ extends javax.swing.JFrame {
                     .addComponent(txtNombreDM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtIDdocumentoDM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtTipoDocumentoDM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -321,7 +312,7 @@ public class Dueños_ extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtGeneroDM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarDM)
                     .addComponent(btnEditarDM)
@@ -336,7 +327,7 @@ public class Dueños_ extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOMBRE", "ID_documento", "Tipo documento", "Documento", "Contacto", "Género"
+                "ID", "NOMBRE", "Tipo documento", "Documento", "Contacto", "Género"
             }
         ));
         tbDueñosMascotas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -440,14 +431,12 @@ public class Dueños_ extends javax.swing.JFrame {
         }else{
             int id = Integer.parseInt((String)tbDueñosMascotas.getValueAt(row,0).toString());
             String owner_ = (String)tbDueñosMascotas.getValueAt(row, 1);
-            int id_document = Integer.parseInt((String)tbDueñosMascotas.getValueAt(row,2).toString());
-            String document_type = (String)tbDueñosMascotas.getValueAt(row, 3);
-            String document = (String)tbDueñosMascotas.getValueAt(row, 4);
-            String contact = (String)tbDueñosMascotas.getValueAt(row, 5);
-            String gender = (String)tbDueñosMascotas.getValueAt(row, 6);
+            String document_type = (String)tbDueñosMascotas.getValueAt(row, 2);
+            String document = (String)tbDueñosMascotas.getValueAt(row, 3);
+            String contact = (String)tbDueñosMascotas.getValueAt(row, 4);
+            String gender = (String)tbDueñosMascotas.getValueAt(row, 5);
             txtIDDM.setText("" + id);
             txtNombreDM.setText(owner_);
-            txtIDdocumentoDM.setText(""+id_document);
             txtTipoDocumentoDM.setText(document_type);
             txtDocumentoDM.setText(document);
             txtContactoDM.setText(contact);
@@ -503,7 +492,6 @@ public class Dueños_ extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -517,7 +505,6 @@ public class Dueños_ extends javax.swing.JFrame {
     private javax.swing.JTextField txtDocumentoDM;
     private javax.swing.JTextField txtGeneroDM;
     private javax.swing.JTextField txtIDDM;
-    private javax.swing.JTextField txtIDdocumentoDM;
     private javax.swing.JTextField txtNombreDM;
     private javax.swing.JTextField txtTipoDocumentoDM;
     // End of variables declaration//GEN-END:variables

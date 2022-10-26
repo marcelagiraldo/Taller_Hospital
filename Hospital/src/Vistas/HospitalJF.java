@@ -22,6 +22,7 @@ public class HospitalJF extends javax.swing.JFrame {
     Statement st;
     ResultSet rs;
     DefaultTableModel modelo;
+    DefaultTableModel modelito;
     /**
      * Creates new form Hospital
      */
@@ -309,7 +310,7 @@ public class HospitalJF extends javax.swing.JFrame {
 
         btnHospital_Mascota.setBackground(new java.awt.Color(51, 255, 255));
         btnHospital_Mascota.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 11)); // NOI18N
-        btnHospital_Mascota.setText("Mascota");
+        btnHospital_Mascota.setText("Mascotas");
         btnHospital_Mascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHospital_MascotaActionPerformed(evt);
@@ -326,10 +327,10 @@ public class HospitalJF extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(329, 329, 329)
                 .addComponent(btnHospital_Mascota)
-                .addGap(331, 331, 331))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,9 +339,9 @@ public class HospitalJF extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnHospital_Mascota)
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -390,8 +391,10 @@ public class HospitalJF extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarHActionPerformed
 
     private void btnHospital_MascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospital_MascotaActionPerformed
-        // TODO add your handling code here:       
-        new Mascotas_().setVisible(true);
+        // TODO add your handling code here:
+        
+        new Mascotas_().setVisible(true);      
+        
     }//GEN-LAST:event_btnHospital_MascotaActionPerformed
 
     /**

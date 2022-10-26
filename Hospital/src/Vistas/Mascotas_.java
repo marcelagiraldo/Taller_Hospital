@@ -419,7 +419,7 @@ public class Mascotas_ extends javax.swing.JFrame {
     }//GEN-LAST:event_tbMascotasMouseClicked
 
     private void btnDueñosMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDueñosMActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         new Dueños_().setVisible(true);
     }//GEN-LAST:event_btnDueñosMActionPerformed
 

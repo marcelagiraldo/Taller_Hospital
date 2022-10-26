@@ -43,13 +43,13 @@ public class Hospital_Mascotas extends javax.swing.JDialog {
             st = cn.createStatement();
             rs = st.executeQuery(sql);
             //Los datos que devuelve la consulta se muestran en la tabla
-            Object[]mascotas = new Object[3];
+            Object[]hospital_mascota = new Object[3];
             modelo = (DefaultTableModel)tbHospital_Mascota.getModel();
             while(rs.next()){
-                mascotas[0] = rs.getInt("id");
-                mascotas[1] = rs.getString("id_pet");
-                mascotas[2] = rs.getString("id_hospital");
-                modelo.addRow(mascotas);
+                hospital_mascota[0] = rs.getInt("id");
+                hospital_mascota[1] = rs.getString("id_pet");
+                hospital_mascota[2] = rs.getString("id_hospital");
+                modelo.addRow(hospital_mascota);
             }
             tbHospital_Mascota.setModel(modelo);
         }catch(SQLException e){
@@ -142,7 +142,6 @@ public class Hospital_Mascotas extends javax.swing.JDialog {
                 st.executeUpdate(query);
                 JOptionPane.showMessageDialog(this, "La relacion hospital-mascota ha sido eliminado con exito");
                 clear_rows_tableHM();
-                clear_rows_tableM();
                 show_hospital_mascota();
                 show_mascotas();
             }catch(HeadlessException | SQLException e){
@@ -158,18 +157,6 @@ public class Hospital_Mascotas extends javax.swing.JDialog {
         txtH.setText("");
         txtIDHM.setText("");
         txtIDM.setText("");
-    }
-    void clear_rows_tableH(){
-        for (int i = 0; i < tbHospitales_.getRowCount(); i++) {
-            modelo1.removeRow(i);
-            i = i-1;
-        }
-    }
-    void clear_rows_tableM(){
-        for (int i = 0; i < tbMascotas_.getRowCount(); i++) {
-            modelo2.removeRow(i);
-            i = i-1;
-        }
     }
 
     /**
@@ -559,7 +546,7 @@ public class Hospital_Mascotas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    public static transient volatile javax.swing.JTable tbHospital_Mascota;
+    public static javax.swing.JTable tbHospital_Mascota;
     private javax.swing.JTable tbHospitales_;
     private javax.swing.JTable tbMascotas_;
     private javax.swing.JTextField txtH;

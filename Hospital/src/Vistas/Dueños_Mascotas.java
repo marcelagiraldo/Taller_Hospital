@@ -38,14 +38,14 @@ public class Dueños_Mascotas extends javax.swing.JDialog {
             st = cn.createStatement();
             rs = st.executeQuery(sql);
             //Los datos que devuelve la consulta se muestran en la tabla
-            Object[]mascotas = new Object[4];
+            Object[]dueños_mascotas = new Object[4];
             modelo = (DefaultTableModel)tbDueños_Mascotas.getModel();
             while(rs.next()){
-                mascotas[0] = rs.getInt("id");
-                mascotas[1] = rs.getString("name_");
-                mascotas[2] = rs.getString("breed");
-                mascotas[3] = rs.getInt("id_owner_pet");
-                modelo.addRow(mascotas);
+                dueños_mascotas[0] = rs.getInt("id");
+                dueños_mascotas[1] = rs.getString("name_");
+                dueños_mascotas[2] = rs.getString("breed");
+                dueños_mascotas[3] = rs.getInt("id_owner_pet");
+                modelo.addRow(dueños_mascotas);
             }
             tbDueños_Mascotas.setModel(modelo);
         }catch(SQLException e){
